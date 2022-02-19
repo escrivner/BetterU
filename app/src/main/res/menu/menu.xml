@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/calories"
+        android:title="Calories"
+        android:icon="@drawable/ic_food" />
+
+    <item
+        android:id="@+id/exercise"
+        android:title="Exercise"
+        android:icon="@drawable/ic_run" />
+
+    <item
+        android:id="@+id/counter"
+        android:title="Counter"
+        android:icon="@drawable/ic_timer" />
+    <item
+        android:id="@+id/progress"
+        android:title="Progress"
+        android:icon="@drawable/ic_home" />
+
+
+</menu>

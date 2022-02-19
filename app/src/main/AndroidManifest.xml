@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.scrivner.healthhelper">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HealthHelper">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.scrivner.healthhelper.Activities"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+        <activity
+            android:name=".Activities.WeighInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CounterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.EditCaloriesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.EditExcerciseActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.ProgressActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".Activities.ExcerciseActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.CaloriesActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

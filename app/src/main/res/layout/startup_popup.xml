@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editPopupHeight"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="25dp"
+        android:ems="10"
+        android:hint="Enter height"
+        android:inputType="number"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPopupWeight" />
+
+    <EditText
+        android:id="@+id/editPopupDeficit"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:ems="10"
+        android:hint="Enter Deficit"
+        android:inputType="number"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPopupHeight" />
+
+    <TextView
+        android:id="@+id/txt_enter_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="72dp"
+        android:text="Please enter your information"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editPopupWeight"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="25dp"
+        android:ems="10"
+        android:hint="Enter current weight"
+        android:inputType="number"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_enter_info" />
+
+    <EditText
+        android:id="@+id/editPopupAge"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="25dp"
+        android:ems="10"
+        android:hint="Enter age"
+        android:inputType="number"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPopupDeficit" />
+
+    <RadioGroup
+        android:id="@+id/popupGenderGroup"
+        android:layout_width="349dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPopupAge">
+
+        <RadioButton
+            android:id="@+id/popupMaleButton"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+
+        <RadioButton
+            android:id="@+id/popupFemaleButton"
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/popupActivityGroup"
+        android:layout_width="246dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="17dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popupGenderGroup">
+
+        <RadioButton
+            android:id="@+id/popupSedentary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sedentary" />
+
+        <RadioButton
+            android:id="@+id/popupLightActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Light Activity" />
+
+        <RadioButton
+            android:id="@+id/popupModerate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Moderate Activity" />
+
+        <RadioButton
+            android:id="@+id/popupVeryActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Very Active" />
+
+        <RadioButton
+            android:id="@+id/popupExtraActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Extra Active" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/popupConfirm"
+        android:layout_width="228dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="107dp"
+        android:text="confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popupActivityGroup" />
+</androidx.constraintlayout.widget.ConstraintLayout>

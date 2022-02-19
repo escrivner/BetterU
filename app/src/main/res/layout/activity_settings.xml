@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SettingsActivity">
+
+    <TextView
+        android:id="@+id/txt_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="88dp"
+        android:text="Age:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editHeight" />
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="321dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="151dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="reset"
+        android:text="reset"
+        app:layout_constraintBottom_toTopOf="@+id/btn_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="294dp"
+        android:layout_marginBottom="658dp"
+        android:text="Settings"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="321dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="151dp"
+        android:layout_marginTop="644dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="39dp"
+        android:onClick="confirmClick"
+        android:text="confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Weight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <EditText
+        android:id="@+id/editWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="321dp"
+        android:text="Height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/editHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editWeight" />
+
+    <Switch
+        android:id="@+id/metricSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="287dp"
+        android:layout_marginBottom="184dp"
+        android:text="Standard or Metric?"
+        app:layout_constraintBottom_toTopOf="@+id/btn_reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:text="Target Daily Deficit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editHeight" />
+
+    <EditText
+        android:id="@+id/editDeficit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="3dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editHeight" />
+
+    <EditText
+        android:id="@+id/editAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="3dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDeficit" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="183dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/txt_gender"
+        app:layout_constraintTop_toBottomOf="@+id/editDeficit">
+
+        <RadioButton
+            android:id="@+id/male_button"
+            android:layout_width="91dp"
+            android:layout_height="33dp"
+            android:checked="true"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/female_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txt_gender"
+        android:layout_width="58dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="76dp"
+        android:text="Gender:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDeficit" />
+
+    <EditText
+        android:id="@+id/editFastTime"
+        android:layout_width="137dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="21dp"
+        android:ems="10"
+        android:hint="Fast Time"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btn_reset"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editEatTime"
+        android:layout_width="137dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="Eat Time"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btn_reset"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/activityGroup"
+        android:layout_width="367dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/metricSwitch">
+
+        <RadioButton
+            android:id="@+id/SedentaryButton"
+            android:layout_width="126dp"
+            android:layout_height="16dp"
+            android:text="Sedentary"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/LightActivityButton"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Light Activity" />
+
+        <RadioButton
+            android:id="@+id/ModerateActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layoutDirection="locale"
+            android:text="Moderate Activity" />
+
+        <RadioButton
+            android:id="@+id/VeryActiveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:text="Very Active" />
+
+        <RadioButton
+            android:id="@+id/ExtraActiveButton"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:text="Extra Active" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

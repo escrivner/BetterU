@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ProgressActivity">
+
+    <Button
+        android:id="@+id/settings"
+        android:layout_width="179dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/purple_500"
+        android:onClick="openSettings"
+        android:text="settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_weighIn" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="179dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/purple_500"
+        android:text="pictures"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_weighIn" />
+
+    <Button
+        android:id="@+id/btn_weighIn"
+        android:layout_width="370dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/purple_500"
+        android:onClick="launchWeighInActivity"
+        android:text="weigh in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_statsDeficit5"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:background="#FFAAA8A8"
+        android:gravity="center|left"
+        android:text=" :Starting Weight"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_statsDeficit4" />
+
+    <TextView
+        android:id="@+id/txt_statsDeficit4"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:background="#FFAAA8A8"
+        android:gravity="center|left"
+        android:text=" :Current Weight"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_statsDeficit3" />
+
+    <TextView
+        android:id="@+id/txt_statsDeficit3"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:background="#FFAAA8A8"
+        android:gravity="center|left"
+        android:text=" :Weight Lost"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_statsBurned" />
+
+    <TextView
+        android:id="@+id/txt_statsBurned"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:background="#FFAAA8A8"
+        android:gravity="center|left"
+        android:text=" :Total Burned"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_statsDeficit" />
+
+    <TextView
+        android:id="@+id/txt_totalDeficitNum7"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:background="#AAA8A8"
+        android:gravity="right"
+        android:text="0 "
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum6" />
+
+    <TextView
+        android:id="@+id/txt_totalDeficitNum6"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:background="#AAA8A8"
+        android:gravity="right"
+        android:text="0 "
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum5" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/purple_500"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_totalDeficitNum"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:background="#AAA8A8"
+        android:gravity="right"
+        android:text="0 "
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_totalDeficitNum4"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:background="#AAA8A8"
+        android:gravity="right"
+        android:text="0 "
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum" />
+
+    <TextView
+        android:id="@+id/txt_totalDeficitNum5"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:background="#AAA8A8"
+        android:gravity="right"
+        android:text="0 "
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum4" />
+
+    <TextView
+        android:id="@+id/txt_statsDeficit"
+        android:layout_width="161dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="36dp"
+        android:background="#FFAAA8A8"
+        android:gravity="center|left"
+        android:text=" :Total Deficit"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

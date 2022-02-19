@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progress_bar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.CaloriesActivity">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/purple_500"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu"
+        tools:layout_editor_absoluteX="-40dp" />
+
+    <ProgressBar
+        android:id="@+id/calorieBar"
+        android:layout_width="377dp"
+        android:layout_height="318dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:progress="40" />
+
+    <TextView
+        android:id="@+id/txt_deficit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Lifetime Calorie Deficit: 0"
+        android:textColor="#716F6F"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tensNumPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_cal_streak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="328dp"
+        android:layout_marginBottom="5dp"
+        android:text="Streak: 0"
+        android:textColor="#716F6F"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_fast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_fast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="352dp"
+        android:layout_marginBottom="5dp"
+        android:text="Remaining Fast Time: 0"
+        android:textColor="#716F6F"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_deficit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/thousNumPicker"
+        android:layout_width="82dp"
+        android:layout_height="224dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="425dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/onesNumPicker"
+        android:layout_width="82dp"
+        android:layout_height="224dp"
+        android:layout_marginTop="425dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/hundNumPicker"
+        android:layout_width="82dp"
+        android:layout_height="224dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="425dp"
+        app:layout_constraintStart_toEndOf="@+id/thousNumPicker"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/tensNumPicker"
+        android:layout_width="82dp"
+        android:layout_height="224dp"
+        android:layout_marginTop="425dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/onesNumPicker"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="175dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/purple_500"
+        android:onClick="addCalories"
+        android:text="add calories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onesNumPicker" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="175dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/purple_500"
+        android:onClick="displayEditActivity"
+        android:text="edit calories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thousNumPicker" />
+
+    <TextView
+        android:id="@+id/txt_current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="38dp"
+        app:layout_constraintBottom_toBottomOf="@+id/calorieBar"
+        app:layout_constraintEnd_toEndOf="@+id/calorieBar"
+        app:layout_constraintStart_toStartOf="@+id/calorieBar"
+        app:layout_constraintTop_toTopOf="@+id/calorieBar"
+        app:layout_constraintVertical_bias="0.299" />
+
+    <TextView
+        android:id="@+id/txt_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="0"
+        android:textSize="38dp"
+        app:layout_constraintBottom_toBottomOf="@+id/calorieBar"
+        app:layout_constraintEnd_toEndOf="@+id/calorieBar"
+        app:layout_constraintStart_toStartOf="@+id/calorieBar"
+        app:layout_constraintTop_toTopOf="@+id/calorieBar"
+        app:layout_constraintVertical_bias="0.847" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

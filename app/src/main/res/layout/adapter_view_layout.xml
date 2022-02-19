@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+
+    <TextView
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="Time: "
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:id="@+id/timeView"
+        android:layout_weight="33.3"
+        android:textSize="18dp" />
+
+    <TextView
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="Calories:"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:id="@+id/caloriesView"
+        android:layout_weight="66.6"
+        android:textSize="18dp" />
+
+</LinearLayout>
