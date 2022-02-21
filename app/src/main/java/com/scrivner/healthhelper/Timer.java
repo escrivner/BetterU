@@ -2,68 +2,64 @@ package com.scrivner.healthhelper;
 
 import android.content.Context;
 import android.os.CountDownTimer;
+import android.util.Log;
+import android.widget.TextView;
 
-import com.scrivner.healthhelper.Activities.CaloriesActivity;
+import java.util.Calendar;
 
 public class Timer {
     /*
     TODO: The entire timer class needs to be rewritten because this code is total shit and broken.
      */
     Storage storage = new Storage();
+    public CountDownTimer countDownTimer;
 
-    int fastTimeHours;
-    int fastTimeMillis;
-    int eatTimeHours;
-    int eatTimeMillis;
-    long millisLeft;
-    int fastState = 0;
-    boolean isRunning = false;
 
-    final int FAST = 0;
-    final int EAT = 1;
-    CountDownTimer countDownTimer;
 
-    public void initializeVariables(Context context) {
+    public void startTimer(Context context, TextView textView) {
+        long currentTimeMillis = Calendar.getInstance().get(Calendar.MILLISECOND);
+        long startTimeHours = (long) storage.loadIntFile(storage.START_FAST_TIME, context);
+        long endTimeHours = (long) storage.loadIntFile(storage.END_FAST_TIME, context);
+        long startTimeMillis = startTimeHours * 3600000;
+        long endTimeMillis = endTimeHours * 3600000;
+        long timerDuration;
+        int isTimerRunning = storage.loadIntFile(storage.IS_TIMER_RUNNING, context);
 
-        fastTimeHours = storage.loadIntFile(storage.FAST_TIME, context);
-        fastTimeMillis = fastTimeHours * 3600000;
-        eatTimeHours = storage.loadIntFile(storage.EAT_TIME, context);
-        eatTimeMillis = eatTimeHours * 3600000;
+        if(currentTimeMillis < startTimeMillis){
 
-        if (fastState == FAST) {
+            storage.saveStringFile("FASTING", storage.TIMER_STATE, context);
+            timerDuration = startTimeMillis - currentTimeMillis;
+        } else if(currentTimeMillis > endTimeMillis){
 
-            millisLeft = fastTimeMillis;
-        } else {
+            storage.saveStringFile("FASTING", storage.TIMER_STATE, context);
+            timerDuration = (86400000 - currentTimeMillis) + startTimeMillis;
+        } else{
 
-            millisLeft = eatTimeMillis;
+            storage.saveStringFile("EATING", storage.TIMER_STATE, context);
+            timerDuration = endTimeMillis - currentTimeMillis;
         }
 
-    }
+        if(isTimerRunning != 0) {
 
-    public void startTimer(Context context) {
+            storage.saveFile(1, storage.IS_TIMER_RUNNING, context);
 
-        initializeVariables(context);
-        countDownTimer = new CountDownTimer(millisLeft, 1000) {
-            @Override
-            public void onTick(long millisLeftUntilFinished) {
+            countDownTimer = new CountDownTimer(timerDuration, 1000) {
+                @Override
+                public void onTick(long remainingTime) {
 
-                //fastView.setText(Long.toString(millisLeftUntilFinished));
-            }
-
-            @Override
-            public void onFinish() {
-
-                if (fastState == FAST) {
-
-                    fastState = EAT;
-                    initializeVariables(context);
-                } else {
-
-                    fastState = FAST;
-                    initializeVariables(context);
+                    textView.setText(remainingTime + " ");
+                    Log.d("Timer", String.valueOf(remainingTime));
                 }
 
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+
+                    storage.saveFile(0, storage.IS_TIMER_RUNNING, context);
+                    startTimer(context, textView);
+                }
+            };
+        }
+
+
     }
 }

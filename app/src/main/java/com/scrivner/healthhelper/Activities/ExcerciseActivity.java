@@ -62,7 +62,7 @@ public class ExcerciseActivity extends AppCompatActivity {
             storage.saveFile(0, storage.BURNED_CAL, getApplicationContext());
         }
         displayExercise();
-        timer.startTimer(getApplicationContext());
+        //timer.startTimer(getApplicationContext());
         bottomNavigationView = findViewById(R.id.bottom_navigator);
         bottomNavigationView.setSelectedItemId(R.id.exercise);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

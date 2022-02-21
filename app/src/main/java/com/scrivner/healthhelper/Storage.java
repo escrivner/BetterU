@@ -4,9 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.os.Environment;
-import android.provider.MediaStore;
-
-import com.scrivner.healthhelper.Activities.CaloriesActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,6 +24,7 @@ public class Storage {
     public final String TOTAL_DEFICIT = "total_deficit_health.txt";
     public final String IS_FIRST_TIME_APP_HAS_OPENED = "is_first_time_app_has_opened_health.txt";
     public final String IS_TIMER_RUNNING = "is_timer_running_health.txt";
+    public final String TIMER_STATE = "timer_state_health.txt";
 
     //excercise activity
     public final String BURNED_CAL = "burned_health.txt";
@@ -47,8 +45,8 @@ public class Storage {
     public final String BASAL = "basal_rate_health.txt";
     public final String ACTIVITY_FACTOR = "activity_factor_health.txt";
     public final String DEFICIT = "deficit_health.txt";
-    public final String FAST_TIME = "fast_time_health.txt";
-    public final String EAT_TIME = "eat_time_health.txt";
+    public final String START_FAST_TIME = "start_fast_time_health.txt";
+    public final String END_FAST_TIME = "end_fast_time_health.txt";
 
     //edit calories activity
     public final String TOTAL_CALORIES_INPUTS = "total_calories_input_health.txt";
@@ -236,12 +234,13 @@ public class Storage {
         saveFile(0, EXERCISE_STREAK, context);
         saveFile(0, CURRENT_WEIGHT, context);
         saveFile(0, CURRENT_WEIGHT, context);
-        saveFile(0, FAST_TIME, context);
-        saveFile(0, EAT_TIME, context);
+        saveFile(0, START_FAST_TIME, context);
+        saveFile(0, END_FAST_TIME, context);
         saveFile(0, HEIGHT, context);
         saveFile(0, DEFICIT, context);
         saveFile(0, AGE, context);
         saveFile(0, IS_FIRST_TIME_APP_HAS_OPENED, context);
+        saveFile(0, IS_TIMER_RUNNING, context);
         saveStringFile("", ACTIVITY_FACTOR, context);
         int currentCalInputs = loadIntFile(TOTAL_CALORIES_INPUTS, context);
 

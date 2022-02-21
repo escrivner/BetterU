@@ -39,7 +39,6 @@
         android:layout_marginStart="159dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="158dp"
-        android:onClick="launchTakePictureIntent"
         android:text="Take Picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -48,10 +47,10 @@
 
     <ImageView
         android:id="@+id/weighInImage"
-        android:layout_width="254dp"
-        android:layout_height="340dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="79dp"
+        android:layout_width="290dp"
+        android:layout_height="417dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/takePictureButton"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
@@ -60,9 +59,8 @@
         android:id="@+id/confirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="40dp"
-        android:onClick="confirmWeighIn"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="4dp"
         android:text="confirm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weighInImage" />

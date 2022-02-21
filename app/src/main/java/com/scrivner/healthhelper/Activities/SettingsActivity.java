@@ -3,7 +3,6 @@ package com.scrivner.healthhelper.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -101,8 +100,8 @@ public class SettingsActivity extends AppCompatActivity {
         deficit = storage.loadIntFile(storage.DEFICIT, getApplicationContext());
         age = storage.loadIntFile(storage.AGE, getApplicationContext());
         gender = storage.loadIntFile(storage.GENDER, getApplicationContext());
-        fastTime = storage.loadIntFile(storage.FAST_TIME, getApplicationContext());
-        eatTime = storage.loadIntFile(storage.EAT_TIME, getApplicationContext());
+        fastTime = storage.loadIntFile(storage.START_FAST_TIME, getApplicationContext());
+        eatTime = storage.loadIntFile(storage.END_FAST_TIME, getApplicationContext());
         activityFactor = Double.parseDouble(storage.loadStringFile(storage.ACTIVITY_FACTOR, getApplicationContext()));
 
         editWeight.setText(Integer.toString(weight));
@@ -184,8 +183,8 @@ public class SettingsActivity extends AppCompatActivity {
         storage.saveFile(height, storage.HEIGHT, getApplicationContext());
         storage.saveFile(deficit, storage.DEFICIT, getApplicationContext());
         storage.saveFile(age, storage.AGE, getApplicationContext());
-        storage.saveFile(fastTime, storage.FAST_TIME, getApplicationContext());
-        storage.saveFile(eatTime, storage.EAT_TIME, getApplicationContext());
+        storage.saveFile(fastTime, storage.START_FAST_TIME, getApplicationContext());
+        storage.saveFile(eatTime, storage.END_FAST_TIME, getApplicationContext());
         storage.saveFile(gender, storage.GENDER, getApplicationContext());
         storage.saveStringFile(Double.toString(activityFactor), storage.ACTIVITY_FACTOR, getApplicationContext());
         storage.saveFile(calculateDailyLimit(getApplicationContext()), storage.LIMIT, getApplicationContext());

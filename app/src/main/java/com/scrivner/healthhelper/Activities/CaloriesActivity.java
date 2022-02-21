@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -103,7 +105,7 @@ public class CaloriesActivity extends AppCompatActivity {
 
         displayCalories();
         displayPopUpMenu();
-        displayTimer();
+        startTimer();
 
         bottomNavigationView = findViewById(R.id.bottom_navigator);
         bottomNavigationView.setSelectedItemId(R.id.calories);
@@ -387,33 +389,69 @@ public class CaloriesActivity extends AppCompatActivity {
 
     }
 
-    public void displayTimer(){
+    public void startTimer() {
         /*
-        This method creates the fast timer if it has not already been started, and restarts when the timer
-        runs out.
+        This method reads the start and end time from storage and starts a timer.
          */
 
-        int fastTimeHours = storage.loadIntFile(storage.FAST_TIME, getApplicationContext());
-        long fastTimeMillis = fastTimeHours * 3600000;
-        int eatTimeHours = storage.loadIntFile(storage.EAT_TIME, getApplicationContext());
-        long eatTimeMillis = fastTimeHours * 3600000;
+        CountDownTimer countDownTimer;
+        long currentTimeMillis = Calendar.getInstance().get(Calendar.MILLISECOND);
+        long startTimeHours = (long) storage.loadIntFile(storage.START_FAST_TIME, getApplicationContext());
+        long endTimeHours = (long) storage.loadIntFile(storage.END_FAST_TIME, getApplicationContext());
+        long startTimeMillis = startTimeHours * 3600000;
+        long endTimeMillis = endTimeHours * 3600000;
+        long timerDuration;
         int isTimerRunning = storage.loadIntFile(storage.IS_TIMER_RUNNING, getApplicationContext());
 
+        if(currentTimeMillis < startTimeMillis){
+
+            storage.saveStringFile("FASTING", storage.TIMER_STATE, getApplicationContext());
+            timerDuration = startTimeMillis - currentTimeMillis;
+        } else if(currentTimeMillis > endTimeMillis){
+
+            storage.saveStringFile("FASTING", storage.TIMER_STATE, getApplicationContext());
+            timerDuration = (86400000 - currentTimeMillis) + startTimeMillis;
+        } else{
+
+            storage.saveStringFile("EATING", storage.TIMER_STATE, getApplicationContext());
+            timerDuration = endTimeMillis - currentTimeMillis;
+        }
+
+        String timerState = storage.loadStringFile(storage.TIMER_STATE, getApplicationContext());
+
+        if(isTimerRunning != 0) {
 
             storage.saveFile(1, storage.IS_TIMER_RUNNING, getApplicationContext());
 
-            CountDownTimer countDownTimer = new CountDownTimer(fastTimeMillis, 1000) {
+            countDownTimer = new CountDownTimer(timerDuration, 1000) {
                 @Override
-                public void onTick(long millisLeftUntilFinished) {
+                public void onTick(long remainingTime) {
 
-                    fastView.setText(Long.toString(millisLeftUntilFinished));
+                    int seconds = (int) (remainingTime / 1000) % 60 ;
+                    int minutes = (int) ((remainingTime / (1000*60)) % 60);
+                    int hours   = (int) ((remainingTime / (1000*60*60)) % 24);
+                    if(timerState.equals("FASTING")) {
+
+                        fastView.setText("Remaining Fast Time: " + hours + ":" + minutes + ":" + seconds);
+                        Log.d("Timer", String.valueOf(remainingTime));
+                    } else {
+
+                        fastView.setText("Remaining Time Until Next Fast: " + hours + ":" + minutes + ":" + seconds);
+                    }
+
                 }
 
                 @Override
                 public void onFinish() {
 
+                    storage.saveFile(0, storage.IS_TIMER_RUNNING, getApplicationContext());
+                    startTimer();
                 }
             }.start();
+        }
+
 
     }
+
+
 }
