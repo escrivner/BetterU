@@ -37,6 +37,8 @@ public class CaloriesActivity extends AppCompatActivity {
     Methods methods = new Methods();
 
     SettingsActivity settings = new SettingsActivity();
+    public CountDownTimer countDownTimer;
+
     BottomNavigationView bottomNavigationView;
     public ProgressBar progressBar;
     public TextView fastView;
@@ -104,6 +106,7 @@ public class CaloriesActivity extends AppCompatActivity {
         displayCalories();
         displayPopUpMenu();
         startTimer();
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigator);
         bottomNavigationView.setSelectedItemId(R.id.calories);
@@ -388,7 +391,6 @@ public class CaloriesActivity extends AppCompatActivity {
         end time in hours, then converts them to milliseconds.
          */
 
-        CountDownTimer countDownTimer;
         long currentTimeMillis = Calendar.getInstance().get(Calendar.MILLISECOND);
         long startTimeHours = (long) storage.loadIntFile(storage.START_FAST_TIME, getApplicationContext());
         long endTimeHours = (long) storage.loadIntFile(storage.END_FAST_TIME, getApplicationContext());
@@ -413,10 +415,10 @@ public class CaloriesActivity extends AppCompatActivity {
 
         String timerState = storage.loadStringFile(storage.TIMER_STATE, getApplicationContext());
 
-        if(isTimerRunning != 0) {
+        if(isTimerRunning == 0) {
 
             storage.saveFile(1, storage.IS_TIMER_RUNNING, getApplicationContext());
-
+            Log.d("Timer", "Timer has started");
             countDownTimer = new CountDownTimer(timerDuration, 1000) {
                 @Override
                 public void onTick(long remainingTime) {
