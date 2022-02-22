@@ -46,11 +46,6 @@ public class ProgressActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     finish();
                     return true;
-                } else if (item.getItemId() == R.id.counter) {
-
-                    startActivity(new Intent(getApplicationContext(), CounterActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
                 }
 
                 return false;

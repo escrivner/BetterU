@@ -12,10 +12,6 @@
         android:icon="@drawable/ic_run" />
 
     <item
-        android:id="@+id/counter"
-        android:title="Counter"
-        android:icon="@drawable/ic_timer" />
-    <item
         android:id="@+id/progress"
         android:title="Progress"
         android:icon="@drawable/ic_home" />

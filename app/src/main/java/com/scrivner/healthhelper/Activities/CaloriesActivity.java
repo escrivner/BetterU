@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -24,7 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.scrivner.healthhelper.Methods;
 import com.scrivner.healthhelper.R;
 import com.scrivner.healthhelper.Storage;
-import com.scrivner.healthhelper.Timer;
+
 
 import java.util.Calendar;
 
@@ -85,7 +84,6 @@ public class CaloriesActivity extends AppCompatActivity {
         if (methods.checkForNewDay(getApplicationContext())) {
 
             currentCalories = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
-            limitCalories = limitCalories;
             int lifetimeDeficit = storage.loadIntFile(storage.TOTAL_DEFICIT, getApplicationContext());
             int deficit = limitCalories - currentCalories;
             int streak = storage.loadIntFile(storage.STREAK_CAL, getApplicationContext());
@@ -127,11 +125,6 @@ public class CaloriesActivity extends AppCompatActivity {
                     return true;
                 } else if (item.getItemId() == R.id.calories) {
 
-                    return true;
-                } else if (item.getItemId() == R.id.counter) {
-
-                    startActivity(new Intent(getApplicationContext(), CounterActivity.class));
-                    overridePendingTransition(0, 0);
                     return true;
                 }
 
@@ -391,7 +384,8 @@ public class CaloriesActivity extends AppCompatActivity {
 
     public void startTimer() {
         /*
-        This method reads the start and end time from storage and starts a timer.
+        This method reads the start and end time from storage and starts a timer. It accepts the start and
+        end time in hours, then converts them to milliseconds.
          */
 
         CountDownTimer countDownTimer;

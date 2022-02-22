@@ -17,7 +17,6 @@ import com.scrivner.healthhelper.Storage;
 public class SettingsActivity extends AppCompatActivity {
 
     Storage storage = new Storage();
-    Methods methods = new Methods();
 
     EditText editWeight;
     EditText editHeight;

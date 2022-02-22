@@ -15,7 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.scrivner.healthhelper.Methods;
 import com.scrivner.healthhelper.R;
 import com.scrivner.healthhelper.Storage;
-import com.scrivner.healthhelper.Timer;
 
 public class ExcerciseActivity extends AppCompatActivity {
 
@@ -24,7 +23,6 @@ public class ExcerciseActivity extends AppCompatActivity {
      */
     Storage storage = new Storage();
     Methods methods = new Methods();
-    Timer timer = new Timer();
 
     BottomNavigationView bottomNavigationView;
     NumberPicker onesPicker;
@@ -83,11 +81,6 @@ public class ExcerciseActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), CaloriesActivity.class));
                     overridePendingTransition(0, 0);
                     finish();
-                    return true;
-                } else if (item.getItemId() == R.id.counter) {
-
-                    startActivity(new Intent(getApplicationContext(), CounterActivity.class));
-                    overridePendingTransition(0, 0);
                     return true;
                 }
 
