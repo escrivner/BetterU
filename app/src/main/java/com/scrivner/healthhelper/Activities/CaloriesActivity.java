@@ -105,7 +105,9 @@ public class CaloriesActivity extends AppCompatActivity {
 
         displayCalories();
         displayPopUpMenu();
-        startTimer();
+        displayFastTime();
+
+
 
 
         bottomNavigationView = findViewById(R.id.bottom_navigator);
@@ -385,69 +387,88 @@ public class CaloriesActivity extends AppCompatActivity {
 
     }
 
-    public void startTimer() {
+
+    public void displayFastTime(){
         /*
-        This method reads the start and end time from storage and starts a timer. It accepts the start and
-        end time in hours, then converts them to milliseconds.
+        This method displays the time remaining in the fast. The timer does not continue to run when the activity is closed.
+        Instead it creates a new CountDownTimer everytime the activity is opened.
          */
 
-        long currentTimeMillis = Calendar.getInstance().get(Calendar.MILLISECOND);
+        long currentHours = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        long currentMinutes = Calendar.getInstance().get(Calendar.MINUTE);
+        long currentSeconds = Calendar.getInstance().get(Calendar.SECOND);
+        long currentMillis = (currentHours * 3600000) + (currentMinutes * 60000) + (currentSeconds * 1000);
         long startTimeHours = (long) storage.loadIntFile(storage.START_FAST_TIME, getApplicationContext());
         long endTimeHours = (long) storage.loadIntFile(storage.END_FAST_TIME, getApplicationContext());
         long startTimeMillis = startTimeHours * 3600000;
         long endTimeMillis = endTimeHours * 3600000;
-        long timerDuration;
-        int isTimerRunning = storage.loadIntFile(storage.IS_TIMER_RUNNING, getApplicationContext());
+        long remainingTime;
 
-        if(currentTimeMillis < startTimeMillis){
 
-            storage.saveStringFile("FASTING", storage.TIMER_STATE, getApplicationContext());
-            timerDuration = startTimeMillis - currentTimeMillis;
-        } else if(currentTimeMillis > endTimeMillis){
+        if(currentMillis < startTimeMillis){
 
             storage.saveStringFile("FASTING", storage.TIMER_STATE, getApplicationContext());
-            timerDuration = (86400000 - currentTimeMillis) + startTimeMillis;
+            remainingTime = startTimeMillis - currentMillis;
+        } else if(currentMillis > endTimeMillis){
+
+            storage.saveStringFile("FASTING", storage.TIMER_STATE, getApplicationContext());
+            remainingTime = (86400000 - currentMillis) + startTimeMillis;
         } else{
 
             storage.saveStringFile("EATING", storage.TIMER_STATE, getApplicationContext());
-            timerDuration = endTimeMillis - currentTimeMillis;
+            remainingTime = endTimeMillis - currentMillis;
         }
 
+        fastView.setText(remainingTime + "");
         String timerState = storage.loadStringFile(storage.TIMER_STATE, getApplicationContext());
+        countDownTimer = new CountDownTimer(remainingTime, 1000) {
+            @Override
+            public void onTick(long l) {
 
-        if(isTimerRunning == 0) {
+                int seconds = (int) (l / 1000) % 60 ;
+                int minutes = (int) ((l / (1000*60)) % 60);
+                int hours   = (int) ((l / (1000*60*60)) % 24);
+                String secondsString = Integer.toString(seconds);
+                String minutesString  = Integer.toString(minutes);
+                String hoursString = Integer.toString(hours);
 
-            storage.saveFile(1, storage.IS_TIMER_RUNNING, getApplicationContext());
-            Log.d("Timer", "Timer has started");
-            countDownTimer = new CountDownTimer(timerDuration, 1000) {
-                @Override
-                public void onTick(long remainingTime) {
+                if(minutes < 10){
 
-                    int seconds = (int) (remainingTime / 1000) % 60 ;
-                    int minutes = (int) ((remainingTime / (1000*60)) % 60);
-                    int hours   = (int) ((remainingTime / (1000*60*60)) % 24);
-                    if(timerState.equals("FASTING")) {
-
-                        fastView.setText("Remaining Fast Time: " + hours + ":" + minutes + ":" + seconds);
-                        Log.d("Timer", String.valueOf(remainingTime));
-                    } else {
-
-                        fastView.setText("Remaining Time Until Next Fast: " + hours + ":" + minutes + ":" + seconds);
-                    }
-
+                    minutesString = "0" + minutes;
                 }
 
-                @Override
-                public void onFinish() {
+                if(seconds < 10){
 
-                    storage.saveFile(0, storage.IS_TIMER_RUNNING, getApplicationContext());
-                    startTimer();
+                    secondsString = "0" + seconds;
                 }
-            }.start();
-        }
 
+                String timeString = hoursString + ":" + minutesString + ":" + secondsString;
+
+                if(timerState.equals("FASTING")) {
+
+                    fastView.setText("Remaining Fast Time: " + timeString);
+                } else {
+
+                    fastView.setText("Remaining Time Until Next Fast: " + timeString);
+                    Log.d("Timer", String.valueOf(l));
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+                fastView.setText("Time to eat!!");
+            }
+        }.start();
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        countDownTimer.cancel();
+    }
+
 
 
 }
