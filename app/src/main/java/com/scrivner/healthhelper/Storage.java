@@ -37,6 +37,9 @@ public class Storage {
     public final String DAY = "day_health.txt";
     public final String HOUR = "hour_health.txt";
 
+    //progress
+    public final String STARTING_WEIGHT = "starting_weight_health.txt";
+
     //settings
     public final String CURRENT_WEIGHT = "current_weight_health.txt";
     public final String HEIGHT = "height_health.txt";

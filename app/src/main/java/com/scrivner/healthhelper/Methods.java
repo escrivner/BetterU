@@ -1,13 +1,25 @@
 package com.scrivner.healthhelper;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.scrivner.healthhelper.Activities.ExerciseActivity;
+import com.scrivner.healthhelper.Activities.ProgressActivity;
 
 import java.util.Calendar;
 
 public class Methods {
 
     Storage storage = new Storage();
+    BottomNavigationView bottomNavigationView;
+    public final int CALORIES = 0;
+    public final int EXERCISE = 1;
+    public final int PROGRESS = 2;
 
     public boolean checkForNewDay(Context context) {
 
@@ -82,4 +94,6 @@ public class Methods {
 
         }
     }
+
+
 }

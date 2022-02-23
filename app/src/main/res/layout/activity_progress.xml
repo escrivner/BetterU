@@ -104,7 +104,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_statsDeficit" />
 
     <TextView
-        android:id="@+id/txt_totalDeficitNum7"
+        android:id="@+id/txt_startingWeightProgress"
         android:layout_width="161dp"
         android:layout_height="43dp"
         android:layout_marginStart="36dp"
@@ -117,10 +117,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum6" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_currentWeightProgress" />
 
     <TextView
-        android:id="@+id/txt_totalDeficitNum6"
+        android:id="@+id/txt_currentWeightProgress"
         android:layout_width="161dp"
         android:layout_height="43dp"
         android:layout_marginStart="36dp"
@@ -133,7 +133,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum5" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalWeightLostProgress" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
@@ -146,7 +146,7 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
-        android:id="@+id/txt_totalDeficitNum"
+        android:id="@+id/txt_totalDeficitProgress"
         android:layout_width="161dp"
         android:layout_height="43dp"
         android:layout_marginStart="36dp"
@@ -162,7 +162,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_totalDeficitNum4"
+        android:id="@+id/txt_totalBurnedProgress"
         android:layout_width="161dp"
         android:layout_height="43dp"
         android:layout_marginStart="36dp"
@@ -175,10 +175,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitProgress" />
 
     <TextView
-        android:id="@+id/txt_totalDeficitNum5"
+        android:id="@+id/txt_totalWeightLostProgress"
         android:layout_width="161dp"
         android:layout_height="43dp"
         android:layout_marginStart="36dp"
@@ -191,7 +191,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txt_statsDeficit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_totalDeficitNum4" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalBurnedProgress" />
 
     <TextView
         android:id="@+id/txt_statsDeficit"

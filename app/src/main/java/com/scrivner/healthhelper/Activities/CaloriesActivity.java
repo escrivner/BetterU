@@ -63,81 +63,16 @@ public class CaloriesActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressBar = findViewById(R.id.calorieBar);
-        progressBar.setMax(limitCalories);
-        currentView = findViewById(R.id.txt_current);
-        limitView = findViewById(R.id.txt_limit);
-        lifetimeView = findViewById(R.id.txt_deficit);
-        streakView = findViewById(R.id.txt_cal_streak);
-        fastView = findViewById(R.id.txt_fast);
-        onesPicker = findViewById(R.id.onesNumPicker);
-        tensPicker = findViewById(R.id.tensNumPicker);
-        hundredsPicker = findViewById(R.id.hundNumPicker);
-        thousandsPicker = findViewById(R.id.thousNumPicker);
-        onesPicker.setMinValue(0);
-        tensPicker.setMinValue(0);
-        hundredsPicker.setMinValue(0);
-        thousandsPicker.setMinValue(0);
-        onesPicker.setMaxValue(9);
-        tensPicker.setMaxValue(9);
-        hundredsPicker.setMaxValue(9);
-        thousandsPicker.setMaxValue(9);
 
-        /*if (methods.checkForNewDay(getApplicationContext())) {
-
-            currentCalories = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
-            int lifetimeDeficit = storage.loadIntFile(storage.TOTAL_DEFICIT, getApplicationContext());
-            int deficit = limitCalories - currentCalories;
-            int calStreak = storage.loadIntFile(storage.STREAK_CAL, getApplicationContext());
-            int burnedStreak = storage.loadIntFile(storage.EXERCISE_STREAK, getApplicationContext());
-
-            if (currentCalories > 0 && currentCalories < limitCalories) {
-
-                calStreak++;
-            }
-
-            lifetimeDeficit += deficit;
-            storage.saveFile(lifetimeDeficit, storage.TOTAL_DEFICIT, getApplicationContext());
-            storage.saveFile(0, storage.BURNED_CAL, getApplicationContext());
-            storage.saveFile(0, storage.CURRENT_CAL, getApplicationContext());
-            storage.saveFile(calStreak, storage.STREAK_CAL, getApplicationContext());
-            progressBar.setProgress(0);
-        }*/
-
+        initializeVariables();
         methods.resetNewDay(getApplicationContext());
+        displayBottomNavigation();
         displayCalories();
         displayPopUpMenu();
         displayFastTime();
 
 
 
-
-        bottomNavigationView = findViewById(R.id.bottom_navigator);
-        bottomNavigationView.setSelectedItemId(R.id.calories);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                if (item.getItemId() == R.id.exercise) {
-
-                    startActivity(new Intent(getApplicationContext(), ExerciseActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                } else if (item.getItemId() == R.id.progress) {
-
-                    startActivity(new Intent(getApplicationContext(), ProgressActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                } else if (item.getItemId() == R.id.calories) {
-
-                    return true;
-                }
-
-                return false;
-            }
-        });
 
 
     }
@@ -153,7 +88,6 @@ public class CaloriesActivity extends AppCompatActivity {
         Gets the numbers from the number wheel and adds it to the value
         of current calories.
          */
-
         int ones = onesPicker.getValue();
         int tens = tensPicker.getValue() * 10;
         int hundreds = hundredsPicker.getValue() * 100;
@@ -176,30 +110,13 @@ public class CaloriesActivity extends AppCompatActivity {
     public void displayCalories() {
         /*
         Loads the values of current calories and the limit and displays that information
-        to the UI elements. This is bad code and there is definitely a better way of doing this.
+        to the UI elements.
          */
 
-        try {
-            currentCalories = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            storage.saveFile(0, storage.CURRENT_CAL, getApplicationContext());
-            currentCalories = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
-        }
-
-        try {
-            limitCalories = storage.loadIntFile(storage.LIMIT, getApplicationContext());
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            storage.saveFile(2500, storage.LIMIT, getApplicationContext());
-            limitCalories = storage.loadIntFile(storage.LIMIT, getApplicationContext());
-        }
-
+        int currentCalories = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
+        int limitCalories = storage.loadIntFile(storage.LIMIT, getApplicationContext());
         int totalDeficit = storage.loadIntFile(storage.TOTAL_DEFICIT, getApplicationContext());
         int streak = storage.loadIntFile(storage.STREAK_CAL, getApplicationContext());
-
 
         streakView.setText("Current Streak: " + streak);
         lifetimeView.setText("Lifetime Deficit: " + totalDeficit);
@@ -369,6 +286,7 @@ public class CaloriesActivity extends AppCompatActivity {
                         }
 
                         storage.saveFile(weight, storage.CURRENT_WEIGHT, dialog.getContext());
+                        storage.saveFile(weight, storage.STARTING_WEIGHT, dialog.getContext());
                         storage.saveFile(height, storage.HEIGHT, dialog.getContext());
                         storage.saveFile(deficit, storage.DEFICIT, dialog.getContext());
                         storage.saveFile(age, storage.AGE, dialog.getContext());
@@ -469,6 +387,61 @@ public class CaloriesActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         countDownTimer.cancel();
+    }
+
+    private void displayBottomNavigation(){
+
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        bottomNavigationView.setSelectedItemId(R.id.calories);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if (item.getItemId() == R.id.exercise) {
+
+                    startActivity(new Intent(getApplicationContext(), ExerciseActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
+                } else if (item.getItemId() == R.id.progress) {
+
+                    startActivity(new Intent(getApplicationContext(), ProgressActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
+                } else if (item.getItemId() == R.id.calories) {
+
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+
+    }
+
+    private void initializeVariables(){
+
+        progressBar = findViewById(R.id.calorieBar);
+        progressBar.setMax(limitCalories);
+        currentView = findViewById(R.id.txt_current);
+        limitView = findViewById(R.id.txt_limit);
+        lifetimeView = findViewById(R.id.txt_deficit);
+        streakView = findViewById(R.id.txt_cal_streak);
+        fastView = findViewById(R.id.txt_fast);
+        onesPicker = findViewById(R.id.onesNumPicker);
+        tensPicker = findViewById(R.id.tensNumPicker);
+        hundredsPicker = findViewById(R.id.hundNumPicker);
+        thousandsPicker = findViewById(R.id.thousNumPicker);
+        onesPicker.setMinValue(0);
+        tensPicker.setMinValue(0);
+        hundredsPicker.setMinValue(0);
+        thousandsPicker.setMinValue(0);
+        onesPicker.setMaxValue(9);
+        tensPicker.setMaxValue(9);
+        hundredsPicker.setMaxValue(9);
+        thousandsPicker.setMaxValue(9);
     }
 
 

@@ -41,67 +41,14 @@ public class ExerciseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_excercise);
-
-        burnedView = findViewById(R.id.txt_burned);
-        statusView = findViewById(R.id.txt_status);
-        streakView = findViewById(R.id.txt_streak);
-        lifetimeView = findViewById(R.id.txt_lifetimeBurned);
-
-        onesPicker = findViewById(R.id.onesNumPicker2);
-        tensPicker = findViewById(R.id.tensNumPicker2);
-        hundredsPicker = findViewById(R.id.hundredsNumPicker2);
-        thousandsPicker = findViewById(R.id.thousNumPicker2);
-        onesPicker.setMinValue(0);
-        tensPicker.setMinValue(0);
-        hundredsPicker.setMinValue(0);
-        thousandsPicker.setMinValue(0);
-        onesPicker.setMaxValue(9);
-        tensPicker.setMaxValue(9);
-        hundredsPicker.setMaxValue(9);
-        thousandsPicker.setMaxValue(9);
-
-        /*if (methods.checkForNewDay(getApplicationContext())) {
-
-            int currentBurned = storage.loadIntFile(storage.BURNED_CAL, getApplicationContext());
-            int streak = storage.loadIntFile(storage.EXERCISE_STREAK, getApplicationContext());
-            streak++;
-            storage.saveFile(streak,storage.EXERCISE_STREAK, getApplicationContext());
+        setContentView(R.layout.activity_exercise);
 
 
-            storage.saveFile(0, storage.CURRENT_CAL, getApplicationContext());
-            storage.saveFile(0, storage.BURNED_CAL, getApplicationContext());
-        }*/
-
+        initializeVariables();
         methods.resetNewDay(getApplicationContext());
+        displayBottomNavigation();
         displayExercise();
-        bottomNavigationView = findViewById(R.id.bottom_navigator);
-        bottomNavigationView.setSelectedItemId(R.id.exercise);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                if (item.getItemId() == R.id.exercise) {
-
-                    return true;
-                } else if (item.getItemId() == R.id.progress) {
-
-                    startActivity(new Intent(getApplicationContext(), ProgressActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                } else if (item.getItemId() == R.id.calories) {
-
-                    startActivity(new Intent(getApplicationContext(), CaloriesActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                }
-
-                return false;
-
-            }
-        });
     }
 
     @Override
@@ -110,7 +57,7 @@ public class ExerciseActivity extends AppCompatActivity {
         displayExercise();
     }
 
-    public void addExcercise(View view) {
+    public void addExercise(View view) {
 
         currentBurned = storage.loadIntFile(storage.BURNED_CAL, getApplicationContext());
         int ones = onesPicker.getValue();
@@ -158,5 +105,56 @@ public class ExerciseActivity extends AppCompatActivity {
     public void displayEditActivity(View view) {
 
         startActivity(new Intent(getApplicationContext(), EditExerciseActivity.class));
+    }
+
+    private void displayBottomNavigation(){
+
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        bottomNavigationView.setSelectedItemId(R.id.exercise);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if (item.getItemId() == R.id.exercise) {
+
+                    return true;
+                } else if (item.getItemId() == R.id.progress) {
+
+                    startActivity(new Intent(getApplicationContext(), ProgressActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
+                } else if (item.getItemId() == R.id.calories) {
+
+                    startActivity(new Intent(getApplicationContext(), CaloriesActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
+                }
+
+                return false;
+
+            }
+        });
+    }
+
+    private void initializeVariables(){
+        burnedView = findViewById(R.id.txt_burned);
+        statusView = findViewById(R.id.txt_status);
+        streakView = findViewById(R.id.txt_streak);
+        lifetimeView = findViewById(R.id.txt_lifetimeBurned);
+        onesPicker = findViewById(R.id.onesNumPicker2);
+        tensPicker = findViewById(R.id.tensNumPicker2);
+        hundredsPicker = findViewById(R.id.hundredsNumPicker2);
+        thousandsPicker = findViewById(R.id.thousNumPicker2);
+        onesPicker.setMinValue(0);
+        tensPicker.setMinValue(0);
+        hundredsPicker.setMinValue(0);
+        thousandsPicker.setMinValue(0);
+        onesPicker.setMaxValue(9);
+        tensPicker.setMaxValue(9);
+        hundredsPicker.setMaxValue(9);
+        thousandsPicker.setMaxValue(9);
+
     }
 }
