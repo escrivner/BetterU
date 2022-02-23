@@ -8,9 +8,11 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.scrivner.healthhelper.Activities.CalObject;
 import com.scrivner.healthhelper.Activities.ExerciseActivity;
 import com.scrivner.healthhelper.Activities.ProgressActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Methods {
@@ -19,7 +21,7 @@ public class Methods {
     BottomNavigationView bottomNavigationView;
     public final int CALORIES = 0;
     public final int EXERCISE = 1;
-    public final int PROGRESS = 2;
+    public final int WEIGH_IN = 2;
 
     public boolean checkForNewDay(Context context) {
 
@@ -66,6 +68,9 @@ public class Methods {
             int currentBurned = storage.loadIntFile(storage.BURNED_CAL, context);
             int lifetimeBurned = storage.loadIntFile(storage.TOTAL_BURNED, context);
             int burnedStreak = storage.loadIntFile(storage.EXERCISE_STREAK, context);
+            int calTotalInputs = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, context);
+            int exerciseTotalInputs = 0;
+            int weightInTotalInputs = storage.loadIntFile(storage.WEIGH_IN_INPUTS, context);
 
             if (currentCalories > 0 && currentCalories < limitCalories) {
 
@@ -85,12 +90,21 @@ public class Methods {
                 burnedStreak = 0;
             }
 
+            for(int i = 0; i < calTotalInputs; i++){
+
+                String calEntryFile = "edit_calories_input_" + i + ".txt";
+                String calTimeFile = "edit_calories_time_" + i + ".txt";
+                storage.saveFile(0, calEntryFile, context);
+                storage.saveStringFile("", calTimeFile, context);
+            }
+
             storage.saveFile(lifetimeDeficit, storage.TOTAL_DEFICIT, context);
             storage.saveFile(lifetimeBurned, storage.TOTAL_BURNED, context);
             storage.saveFile(calStreak, storage.STREAK_CAL, context);
             storage.saveFile(burnedStreak, storage.EXERCISE_STREAK, context);
             storage.saveFile(0, storage.BURNED_CAL, context);
             storage.saveFile(0, storage.CURRENT_CAL, context);
+            storage.saveFile(0, storage.TOTAL_CALORIES_INPUTS, context);
 
         }
     }
@@ -111,5 +125,21 @@ public class Methods {
             timeString += "PM";
         }
         return timeString;
+    }
+
+    public void buildArray(int activity, Context context){
+
+        ArrayList<CalObject> array = new ArrayList<>();
+        int totalInputs = 0;
+
+        if(activity == CALORIES){
+
+            totalInputs = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, context);
+        }
+
+        for(int i = 0; i < totalInputs + 1; i++){
+
+        }
+
     }
 }
