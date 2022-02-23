@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.scrivner.healthhelper.Methods;
 import com.scrivner.healthhelper.R;
 import com.scrivner.healthhelper.Storage;
 
@@ -31,8 +32,11 @@ import java.io.IOException;
 public class WeighInActivity extends AppCompatActivity {
 
     Storage storage = new Storage();
+    Methods methods = new Methods();
     ImageView imageView;
+    EditText newWeightEdit;
     Button takePictureButton;
+    Button confirmButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +44,23 @@ public class WeighInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weigh_in);
 
         imageView = findViewById(R.id.weighInImage);
-        takePictureButton = (Button) findViewById(R.id.takePictureButton);
+        newWeightEdit = findViewById(R.id.editWeighIn);
+        takePictureButton = findViewById(R.id.takePictureButton);
+        confirmButton = findViewById(R.id.confirmButton);
+
+
+
+    }
+
+    private void setupPictureButton(){
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.CAMERA}, 100);
-            };
+        };
+
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +87,48 @@ public class WeighInActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void saveWeighIn(){
+
+        int currentWeightInInputs = storage.loadIntFile(storage.WEIGH_IN_INPUTS, getApplicationContext());
+        int currentWeight = storage.loadIntFile(storage.WEIGH_IN_INPUTS, getApplicationContext());
+        int newWeight;
+        boolean weighInIsANumber;
+
+        try{
+
+            newWeight = Integer.parseInt(newWeightEdit.getText().toString());
+            weighInIsANumber = true;
+        } catch (Exception e){
+
+            weighInIsANumber = false;
+        }
+
+        if(weighInIsANumber){
+
+            currentWeightInInputs++;
+            String weightInEntryFile = "edit_weigh_in_input_" + currentWeightInInputs + ".txt";
+            String weightInTimeFile = "edit_weight_in_time_" + currentWeightInInputs + ".txt";
+            String timeString = methods.getTimeString();
+
+
+
+        }
+    }
+
+    private void setupConfirmButton(){
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

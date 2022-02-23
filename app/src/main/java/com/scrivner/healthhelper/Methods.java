@@ -95,5 +95,21 @@ public class Methods {
         }
     }
 
+    public String getTimeString(){
 
+        int am_pm = Calendar.getInstance().get(Calendar.AM_PM);
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR);
+        int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        int currentSecond = Calendar.getInstance().get(Calendar.SECOND);
+        String timeString = currentHour + ":" + currentMinute + ":" + currentSecond + " ";
+
+        if (am_pm == 0) {
+
+            timeString += "AM";
+        } else {
+
+            timeString += "PM";
+        }
+        return timeString;
+    }
 }

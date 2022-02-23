@@ -19,14 +19,14 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_weighIn" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_editWeightIn"
         android:layout_width="179dp"
         android:layout_height="58dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/purple_500"
-        android:text="pictures"
+        android:text="Edit Weigh In"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

@@ -26,7 +26,7 @@ public class Storage {
     public final String IS_TIMER_RUNNING = "is_timer_running_health.txt";
     public final String TIMER_STATE = "timer_state_health.txt";
 
-    //excercise activity
+    //exercise activity
     public final String BURNED_CAL = "burned_health.txt";
     public final String EXERCISE_STREAK = "exercise_streak_health.txt";
     public final String TOTAL_BURNED = "total_cal_burned_health.txt";
