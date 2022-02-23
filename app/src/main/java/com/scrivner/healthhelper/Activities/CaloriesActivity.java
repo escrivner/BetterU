@@ -83,26 +83,28 @@ public class CaloriesActivity extends AppCompatActivity {
         hundredsPicker.setMaxValue(9);
         thousandsPicker.setMaxValue(9);
 
-        if (methods.checkForNewDay(getApplicationContext())) {
+        /*if (methods.checkForNewDay(getApplicationContext())) {
 
             currentCalories = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
             int lifetimeDeficit = storage.loadIntFile(storage.TOTAL_DEFICIT, getApplicationContext());
             int deficit = limitCalories - currentCalories;
-            int streak = storage.loadIntFile(storage.STREAK_CAL, getApplicationContext());
+            int calStreak = storage.loadIntFile(storage.STREAK_CAL, getApplicationContext());
+            int burnedStreak = storage.loadIntFile(storage.EXERCISE_STREAK, getApplicationContext());
 
             if (currentCalories > 0 && currentCalories < limitCalories) {
 
-                streak++;
+                calStreak++;
             }
 
             lifetimeDeficit += deficit;
             storage.saveFile(lifetimeDeficit, storage.TOTAL_DEFICIT, getApplicationContext());
             storage.saveFile(0, storage.BURNED_CAL, getApplicationContext());
             storage.saveFile(0, storage.CURRENT_CAL, getApplicationContext());
-            storage.saveFile(streak, storage.STREAK_CAL, getApplicationContext());
+            storage.saveFile(calStreak, storage.STREAK_CAL, getApplicationContext());
             progressBar.setProgress(0);
-        }
+        }*/
 
+        methods.resetNewDay(getApplicationContext());
         displayCalories();
         displayPopUpMenu();
         displayFastTime();
@@ -118,7 +120,7 @@ public class CaloriesActivity extends AppCompatActivity {
 
                 if (item.getItemId() == R.id.exercise) {
 
-                    startActivity(new Intent(getApplicationContext(), ExcerciseActivity.class));
+                    startActivity(new Intent(getApplicationContext(), ExerciseActivity.class));
                     overridePendingTransition(0, 0);
                     finish();
                     return true;

@@ -42,5 +42,44 @@ public class Methods {
         }
     }
 
+    public void resetNewDay(Context context){
 
+        if(checkForNewDay(context)) {
+
+            int currentCalories = storage.loadIntFile(storage.CURRENT_CAL, context);
+            int lifetimeDeficit = storage.loadIntFile(storage.TOTAL_DEFICIT, context);
+            int limitCalories = storage.loadIntFile(storage.LIMIT, context);
+            int deficit = limitCalories - currentCalories;
+            int calStreak = storage.loadIntFile(storage.STREAK_CAL, context);
+            int currentBurned = storage.loadIntFile(storage.BURNED_CAL, context);
+            int lifetimeBurned = storage.loadIntFile(storage.TOTAL_BURNED, context);
+            int burnedStreak = storage.loadIntFile(storage.EXERCISE_STREAK, context);
+
+            if (currentCalories > 0 && currentCalories < limitCalories) {
+
+                calStreak++;
+                lifetimeDeficit += deficit;
+            } else {
+
+                calStreak = 0;
+            }
+
+            if (currentBurned > 0) {
+
+                burnedStreak++;
+                lifetimeBurned += currentBurned;
+            } else {
+
+                burnedStreak = 0;
+            }
+
+            storage.saveFile(lifetimeDeficit, storage.TOTAL_DEFICIT, context);
+            storage.saveFile(lifetimeBurned, storage.TOTAL_BURNED, context);
+            storage.saveFile(calStreak, storage.STREAK_CAL, context);
+            storage.saveFile(burnedStreak, storage.EXERCISE_STREAK, context);
+            storage.saveFile(0, storage.BURNED_CAL, context);
+            storage.saveFile(0, storage.CURRENT_CAL, context);
+
+        }
+    }
 }

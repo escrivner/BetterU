@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +17,7 @@ import com.scrivner.healthhelper.Methods;
 import com.scrivner.healthhelper.R;
 import com.scrivner.healthhelper.Storage;
 
-public class ExcerciseActivity extends AppCompatActivity {
+public class ExerciseActivity extends AppCompatActivity {
 
     /*
 
@@ -30,6 +31,9 @@ public class ExcerciseActivity extends AppCompatActivity {
     NumberPicker hundredsPicker;
     NumberPicker thousandsPicker;
     TextView burnedView;
+    TextView statusView;
+    TextView streakView;
+    TextView lifetimeView;
     Button addExcerciseButton;
 
     int currentBurned = 0;
@@ -40,6 +44,9 @@ public class ExcerciseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_excercise);
 
         burnedView = findViewById(R.id.txt_burned);
+        statusView = findViewById(R.id.txt_status);
+        streakView = findViewById(R.id.txt_streak);
+        lifetimeView = findViewById(R.id.txt_lifetimeBurned);
 
         onesPicker = findViewById(R.id.onesNumPicker2);
         tensPicker = findViewById(R.id.tensNumPicker2);
@@ -54,13 +61,20 @@ public class ExcerciseActivity extends AppCompatActivity {
         hundredsPicker.setMaxValue(9);
         thousandsPicker.setMaxValue(9);
 
-        if (methods.checkForNewDay(getApplicationContext())) {
+        /*if (methods.checkForNewDay(getApplicationContext())) {
+
+            int currentBurned = storage.loadIntFile(storage.BURNED_CAL, getApplicationContext());
+            int streak = storage.loadIntFile(storage.EXERCISE_STREAK, getApplicationContext());
+            streak++;
+            storage.saveFile(streak,storage.EXERCISE_STREAK, getApplicationContext());
+
 
             storage.saveFile(0, storage.CURRENT_CAL, getApplicationContext());
             storage.saveFile(0, storage.BURNED_CAL, getApplicationContext());
-        }
+        }*/
+
+        methods.resetNewDay(getApplicationContext());
         displayExercise();
-        //timer.startTimer(getApplicationContext());
         bottomNavigationView = findViewById(R.id.bottom_navigator);
         bottomNavigationView.setSelectedItemId(R.id.exercise);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -127,11 +141,22 @@ public class ExcerciseActivity extends AppCompatActivity {
             currentBurned = storage.loadIntFile(storage.BURNED_CAL, getApplicationContext());
         }
 
+        if(currentBurned > 0){
+
+            statusView.setText("Exercise completed!");
+            statusView.setTextColor(Color.GREEN);
+        }
+
+        int streak = storage.loadIntFile(storage.EXERCISE_STREAK, getApplicationContext());
+        int lifetimeBurned = storage.loadIntFile(storage.TOTAL_BURNED, getApplicationContext());
+
+        streakView.setText("Streak: " + streak);
         burnedView.setText(Integer.toString(currentBurned));
+        lifetimeView.setText("Lifetime Calories Burned: " + lifetimeBurned);
     }
 
     public void displayEditActivity(View view) {
 
-        startActivity(new Intent(getApplicationContext(), EditExcerciseActivity.class));
+        startActivity(new Intent(getApplicationContext(), EditExerciseActivity.class));
     }
 }

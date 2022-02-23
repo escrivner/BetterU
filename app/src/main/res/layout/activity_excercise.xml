@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ExcerciseActivity">
+    tools:context=".Activities.ExerciseActivity">
 
     <Button
         android:id="@+id/btn_editBurned"
@@ -153,6 +153,7 @@
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:textColor="#FF0000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

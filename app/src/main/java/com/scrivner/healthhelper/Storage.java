@@ -29,6 +29,7 @@ public class Storage {
     //excercise activity
     public final String BURNED_CAL = "burned_health.txt";
     public final String EXERCISE_STREAK = "exercise_streak_health.txt";
+    public final String TOTAL_BURNED = "total_cal_burned_health.txt";
 
 
     //tracking time

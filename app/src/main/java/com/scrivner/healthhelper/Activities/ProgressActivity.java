@@ -9,8 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.scrivner.healthhelper.Activities.CaloriesActivity;
-import com.scrivner.healthhelper.Activities.ExcerciseActivity;
 import com.scrivner.healthhelper.R;
 
 public class ProgressActivity extends AppCompatActivity {
@@ -33,7 +31,7 @@ public class ProgressActivity extends AppCompatActivity {
 
                 if (item.getItemId() == R.id.exercise) {
 
-                    startActivity(new Intent(getApplicationContext(), ExcerciseActivity.class));
+                    startActivity(new Intent(getApplicationContext(), ExerciseActivity.class));
                     overridePendingTransition(0, 0);
                     finish();
                     return true;
