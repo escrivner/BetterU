@@ -2,6 +2,7 @@ package com.scrivner.healthhelper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -127,19 +128,73 @@ public class Methods {
         return timeString;
     }
 
-    public void buildArray(int activity, Context context){
+    public ArrayList<CalObject> buildArray(int activity, Context context){
 
         ArrayList<CalObject> array = new ArrayList<>();
         int totalInputs = 0;
+        String entryFile = "";
+        String timeFile = "";
 
         if(activity == CALORIES){
 
             totalInputs = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, context);
+            entryFile = "edit_calories_input_";
+            timeFile = "edit_calories_time_";
         }
 
-        for(int i = 0; i < totalInputs + 1; i++){
+        for(int i = 0; i < totalInputs; i++){
+            int entry = storage.loadIntFile((entryFile + i + ".txt"), context);
+            String time = storage.loadStringFile((timeFile + i + ".txt"), context);
+            CalObject object = new CalObject(entry, time);
+            array.add(object);
+        }
+
+
+
+        return array;
+
+    }
+
+    public void cleanInputFiles(int position, int activity, Context context){
+
+        int totalPositions = 0;
+        String entryFile = "";
+        String timeFile = "";
+
+        if(activity == CALORIES){
+
+            totalPositions = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, context);
+            entryFile = "edit_calories_input_";
+            timeFile = "edit_calories_time_";
+        } else if(activity == EXERCISE){
+
+        } else if(activity == WEIGH_IN){
 
         }
 
+        if(totalPositions > 1) {
+            for (int i = position ; i < totalPositions - 1; i++) {
+
+                String currentFile = entryFile + i + ".txt";
+                String nextFile = entryFile + (i + 1) + ".txt";
+                String currentTimeFile = timeFile + i + ".txt";
+                String nextTimeFile = timeFile + (i + 1) + ".txt";
+
+                int nextInput = storage.loadIntFile(nextFile, context);
+                String nextTime = storage.loadStringFile(nextTimeFile, context);
+                storage.saveFile(nextInput, currentFile, context);
+                storage.saveStringFile(nextTime, currentTimeFile, context);
+            }
+        }
+
+
+
+
+        if(totalPositions >= 1) {
+
+            storage.saveFile((totalPositions - 1), storage.TOTAL_CALORIES_INPUTS, context);
+        }else {
+            storage.saveStringFile("No inputs recorded", timeFile + 0 + "txt", context);
+        }
     }
 }

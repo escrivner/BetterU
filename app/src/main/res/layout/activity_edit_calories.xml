@@ -7,28 +7,17 @@
     tools:context=".Activities.EditCaloriesActivity">
 
     <TextView
-        android:id="@+id/calEntryView"
+        android:id="@+id/calInputsDetected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="173dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="180dp"
-        android:text="Entry View"
+        android:text="No inputs detected"
+        android:textSize="22dp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_info" />
-
-    <TextView
-        android:id="@+id/calTimeView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="180dp"
-        android:text="time View"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_info" />
 
@@ -48,22 +37,11 @@
 
     <ListView
         android:id="@+id/caloriesListView"
-        android:layout_width="0dp"
-        android:layout_height="426dp"
+        android:layout_width="409dp"
+        android:layout_height="586dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/calPosView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="180dp"
-        android:text="calPosView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_info" />
 </androidx.constraintlayout.widget.ConstraintLayout>

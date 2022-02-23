@@ -134,6 +134,7 @@ public class CaloriesActivity extends AppCompatActivity {
          */
 
         startActivity(new Intent(getApplicationContext(), EditCaloriesActivity.class));
+        finish();
     }
 
     public void addCalorieEntry(int entry) {
@@ -142,7 +143,7 @@ public class CaloriesActivity extends AppCompatActivity {
         can display it. It also formats the time so that it is easily readable by the user.
          */
 
-        int currentCalPos = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, getApplicationContext()) + 1;
+        int currentCalPos = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, getApplicationContext());
         String calEntryFile = "edit_calories_input_" + currentCalPos + ".txt";
         String calTimeFile = "edit_calories_time_" + currentCalPos + ".txt";
         int am_pm = Calendar.getInstance().get(Calendar.AM_PM);
@@ -159,7 +160,7 @@ public class CaloriesActivity extends AppCompatActivity {
             timeString += "PM";
         }
 
-        storage.saveFile(currentCalPos, storage.TOTAL_CALORIES_INPUTS, getApplicationContext());
+        storage.saveFile(currentCalPos + 1, storage.TOTAL_CALORIES_INPUTS, getApplicationContext());
         storage.saveFile(entry, calEntryFile, getApplicationContext());
         storage.saveStringFile(timeString, calTimeFile, getApplicationContext());
 
