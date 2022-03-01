@@ -162,18 +162,21 @@ public class Methods {
         int totalPositions = 0;
         String entryFile = "";
         String timeFile = "";
+        String positionsFile = "";
 
         if(activity == CALORIES){
 
             totalPositions = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, context);
             entryFile = "edit_calories_input_";
             timeFile = "edit_calories_time_";
+            positionsFile = storage.TOTAL_CALORIES_INPUTS;
         } else if(activity == EXERCISE){
 
         } else if(activity == WEIGH_IN){
             totalPositions = storage.loadIntFile(storage.WEIGH_IN_INPUTS, context);
             entryFile = "edit_weigh_in_input_";
             timeFile = "edit_weigh_in_time_";
+            positionsFile = storage.WEIGH_IN_INPUTS;
 
         }
 
@@ -197,7 +200,7 @@ public class Methods {
 
         if(totalPositions >= 1) {
 
-            storage.saveFile((totalPositions - 1), storage.TOTAL_CALORIES_INPUTS, context);
+            storage.saveFile((totalPositions - 1), positionsFile, context);
         }else {
             storage.saveStringFile("No inputs recorded", timeFile + 0 + "txt", context);
         }

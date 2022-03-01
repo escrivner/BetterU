@@ -61,15 +61,15 @@ public class EditCaloriesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String currentEntryFile = "edit_calories_input_" + i + ".txt";
-                String currentTimeFile = "edit_calories_time_" + i + ".txt";
+                //String currentEntryFile = "edit_calories_input_" + i + ".txt";
+                //String currentTimeFile = "edit_calories_time_" + i + ".txt";
                 EntryObject object = array.get(i);
                 int currentCal = object.getEntry();
                 int totalCal = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
                 totalCal -= currentCal;
 
                 storage.saveFile(totalCal, storage.CURRENT_CAL, getApplicationContext());
-                cleanInputFiles(i);
+                methods.cleanInputFiles(i, methods.CALORIES, getApplicationContext());
 
                 methods.buildArray(methods.CALORIES, getApplicationContext());
                 ListAdapter adapter = new ListAdapter(getApplicationContext(), com.scrivner.healthhelper.R.layout.adapter_view_layout, array, methods.CALORIES);

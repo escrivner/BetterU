@@ -260,6 +260,8 @@ public class CaloriesActivity extends AppCompatActivity {
                         height = Integer.parseInt(stringHeight);
                         deficit = Integer.parseInt(stringDeficit);
                         age = Integer.parseInt(stringAge);
+                        String weightEntryFile = "edit_weigh_in_input_0.txt";
+                        String weightTimeFile = "edit_weigh_in_time_0.txt";
 
                         if(popupGenderGroup.getCheckedRadioButtonId() == R.id.popupMaleButton){
 
@@ -286,6 +288,10 @@ public class CaloriesActivity extends AppCompatActivity {
                             storage.saveStringFile("1.9", storage.ACTIVITY_FACTOR, dialog.getContext());
                         }
 
+
+                        storage.saveFile(weight, weightEntryFile, dialog.getContext());
+                        storage.saveStringFile(methods.getTimeString(), weightTimeFile, dialog.getContext());
+                        storage.saveFile(1, storage.WEIGH_IN_INPUTS, dialog.getContext());
                         storage.saveFile(weight, storage.CURRENT_WEIGHT, dialog.getContext());
                         storage.saveFile(weight, storage.STARTING_WEIGHT, dialog.getContext());
                         storage.saveFile(height, storage.HEIGHT, dialog.getContext());

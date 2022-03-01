@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.LauncherActivity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -117,10 +118,13 @@ public class WeighInActivity extends AppCompatActivity {
             currentWeightInInputs++;
 
             storage.saveFile(newWeight, weightInEntryFile, getApplicationContext());
+            storage.saveFile(newWeight, storage.CURRENT_WEIGHT, getApplicationContext());
             storage.saveStringFile(timeString, weightInTimeFile, getApplicationContext());
             storage.saveFile(currentWeightInInputs, storage.WEIGH_IN_INPUTS, getApplicationContext());
+
             Log.d("WeighIn", "inputs: " + currentWeightInInputs);
 
+            startActivity(new Intent(getApplicationContext(), ProgressActivity.class));
             finish();
 
         }
@@ -152,6 +156,13 @@ public class WeighInActivity extends AppCompatActivity {
 
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), ProgressActivity.class));
+
     }
 }
 

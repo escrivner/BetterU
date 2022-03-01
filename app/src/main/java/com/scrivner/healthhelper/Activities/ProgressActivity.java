@@ -49,6 +49,7 @@ public class ProgressActivity extends AppCompatActivity {
 
         Intent weighInIntent = new Intent(getApplicationContext(), WeighInActivity.class);
         startActivity(weighInIntent);
+        finish();
     }
 
     private void displayProgress(){
