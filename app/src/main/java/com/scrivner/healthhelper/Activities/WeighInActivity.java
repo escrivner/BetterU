@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,7 +49,7 @@ public class WeighInActivity extends AppCompatActivity {
         takePictureButton = findViewById(R.id.takePictureButton);
         confirmButton = findViewById(R.id.confirmButton);
 
-
+        setupConfirmButton();
 
     }
 
@@ -93,26 +94,34 @@ public class WeighInActivity extends AppCompatActivity {
 
         int currentWeightInInputs = storage.loadIntFile(storage.WEIGH_IN_INPUTS, getApplicationContext());
         int currentWeight = storage.loadIntFile(storage.WEIGH_IN_INPUTS, getApplicationContext());
-        int newWeight;
+        int newWeight = currentWeight;
         boolean weighInIsANumber;
 
         try{
 
             newWeight = Integer.parseInt(newWeightEdit.getText().toString());
             weighInIsANumber = true;
+            Log.d("WeighIn", "works");
         } catch (Exception e){
 
             weighInIsANumber = false;
+            Toast.makeText(getApplicationContext(), "Please enter a number for your weight.", Toast.LENGTH_SHORT).show();
         }
 
         if(weighInIsANumber){
 
-            currentWeightInInputs++;
+
             String weightInEntryFile = "edit_weigh_in_input_" + currentWeightInInputs + ".txt";
-            String weightInTimeFile = "edit_weight_in_time_" + currentWeightInInputs + ".txt";
+            String weightInTimeFile = "edit_weigh_in_time_" + currentWeightInInputs + ".txt";
             String timeString = methods.getTimeString();
+            currentWeightInInputs++;
 
+            storage.saveFile(newWeight, weightInEntryFile, getApplicationContext());
+            storage.saveStringFile(timeString, weightInTimeFile, getApplicationContext());
+            storage.saveFile(currentWeightInInputs, storage.WEIGH_IN_INPUTS, getApplicationContext());
+            Log.d("WeighIn", "inputs: " + currentWeightInInputs);
 
+            finish();
 
         }
     }
@@ -123,6 +132,7 @@ public class WeighInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                saveWeighIn();
 
             }
         });

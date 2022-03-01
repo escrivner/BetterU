@@ -1,6 +1,6 @@
 package com.scrivner.healthhelper.Activities;
 
-public class CalObject {
+public class EntryObject {
     //The object type that helps me store the time and amount of calories entered
     //every time the user inputs calories.
 
@@ -8,7 +8,7 @@ public class CalObject {
     private int entry;
     private String time;
 
-    public CalObject(int entry, String time){
+    public EntryObject(int entry, String time){
         this.entry = entry;
         this.time = time;
     }

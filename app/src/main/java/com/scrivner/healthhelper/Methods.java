@@ -1,17 +1,10 @@
 package com.scrivner.healthhelper;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-
-import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.scrivner.healthhelper.Activities.CalObject;
-import com.scrivner.healthhelper.Activities.ExerciseActivity;
-import com.scrivner.healthhelper.Activities.ProgressActivity;
+import com.scrivner.healthhelper.Activities.EntryObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -128,9 +121,9 @@ public class Methods {
         return timeString;
     }
 
-    public ArrayList<CalObject> buildArray(int activity, Context context){
+    public ArrayList<EntryObject> buildArray(int activity, Context context){
 
-        ArrayList<CalObject> array = new ArrayList<>();
+        ArrayList<EntryObject> array = new ArrayList<>();
         int totalInputs = 0;
         String entryFile = "";
         String timeFile = "";
@@ -140,13 +133,22 @@ public class Methods {
             totalInputs = storage.loadIntFile(storage.TOTAL_CALORIES_INPUTS, context);
             entryFile = "edit_calories_input_";
             timeFile = "edit_calories_time_";
+        } else if(activity == EXERCISE){
+
+
+        } else if(activity == WEIGH_IN){
+
+            totalInputs = storage.loadIntFile(storage.WEIGH_IN_INPUTS, context);
+            entryFile = "edit_weigh_in_input_";
+            timeFile = "edit_weigh_in_time_";
         }
 
         for(int i = 0; i < totalInputs; i++){
             int entry = storage.loadIntFile((entryFile + i + ".txt"), context);
             String time = storage.loadStringFile((timeFile + i + ".txt"), context);
-            CalObject object = new CalObject(entry, time);
+            EntryObject object = new EntryObject(entry, time);
             array.add(object);
+            Log.d("WeighIn", "loop position: " + entry);
         }
 
 
@@ -169,6 +171,9 @@ public class Methods {
         } else if(activity == EXERCISE){
 
         } else if(activity == WEIGH_IN){
+            totalPositions = storage.loadIntFile(storage.WEIGH_IN_INPUTS, context);
+            entryFile = "edit_weigh_in_input_";
+            timeFile = "edit_weigh_in_time_";
 
         }
 

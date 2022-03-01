@@ -247,6 +247,7 @@ public class Storage {
         saveFile(0, IS_TIMER_RUNNING, context);
         saveStringFile("", ACTIVITY_FACTOR, context);
         int currentCalInputs = loadIntFile(TOTAL_CALORIES_INPUTS, context);
+        int currentWeighInInputs = loadIntFile(WEIGH_IN_INPUTS, context);
 
         for(int i = 0; i < currentCalInputs; i++){
 
@@ -256,7 +257,16 @@ public class Storage {
             saveStringFile(null, calTimeFile, context);
         }
 
+        for(int i = 0; i < currentWeighInInputs; i++){
+
+            String entryFile = "edit_weigh_in_input_" + i + ".txt";
+            String timeFile = "edit_weigh_in_time_" + i + ".txt";
+            saveFile(0, entryFile, context);
+            saveStringFile(null, timeFile, context);
+        }
+
         saveFile(0, TOTAL_CALORIES_INPUTS, context);
+        saveFile(0, WEIGH_IN_INPUTS, context);
         //caloriesActivity.progressBar.setProgress(0);
     }
 }

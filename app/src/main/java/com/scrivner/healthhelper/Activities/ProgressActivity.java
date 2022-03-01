@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,6 +26,7 @@ public class ProgressActivity extends AppCompatActivity {
     TextView weightLostView;
     TextView currentWeightView;
     TextView startingWeightView;
+    Button editWeighInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,18 @@ public class ProgressActivity extends AppCompatActivity {
         weightLostView = findViewById(R.id.txt_totalWeightLostProgress);
         currentWeightView = findViewById(R.id.txt_currentWeightProgress);
         startingWeightView = findViewById(R.id.txt_startingWeightProgress);
+        editWeighInButton = findViewById(R.id.btn_editWeightIn);
+
+        editWeighInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getApplicationContext(), EditWeighInActivity.class));
+                finish();
+            }
+        });
+
+
     }
 
     private void displayBottomNavigation(){

@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.scrivner.healthhelper.CalListAdapter;
+import com.scrivner.healthhelper.ListAdapter;
 import com.scrivner.healthhelper.Methods;
 import com.scrivner.healthhelper.Storage;
 
@@ -30,7 +29,7 @@ public class EditCaloriesActivity extends AppCompatActivity {
 
     TextView calEntryView;
     ListView calListView;
-    ArrayList<CalObject> array;
+    ArrayList<EntryObject> array;
 
     @Override
     public void onBackPressed() {
@@ -56,7 +55,7 @@ public class EditCaloriesActivity extends AppCompatActivity {
 
             calEntryView.setVisibility(View.INVISIBLE);
         }
-        CalListAdapter adapter = new CalListAdapter(this, com.scrivner.healthhelper.R.layout.adapter_view_layout, array);
+        ListAdapter adapter = new ListAdapter(this, com.scrivner.healthhelper.R.layout.adapter_view_layout, array, methods.CALORIES);
         calListView.setAdapter(adapter);
         calListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -64,7 +63,7 @@ public class EditCaloriesActivity extends AppCompatActivity {
 
                 String currentEntryFile = "edit_calories_input_" + i + ".txt";
                 String currentTimeFile = "edit_calories_time_" + i + ".txt";
-                CalObject object = array.get(i);
+                EntryObject object = array.get(i);
                 int currentCal = object.getEntry();
                 int totalCal = storage.loadIntFile(storage.CURRENT_CAL, getApplicationContext());
                 totalCal -= currentCal;
@@ -73,7 +72,7 @@ public class EditCaloriesActivity extends AppCompatActivity {
                 cleanInputFiles(i);
 
                 methods.buildArray(methods.CALORIES, getApplicationContext());
-                CalListAdapter adapter = new CalListAdapter(getApplicationContext(), com.scrivner.healthhelper.R.layout.adapter_view_layout, array);
+                ListAdapter adapter = new ListAdapter(getApplicationContext(), com.scrivner.healthhelper.R.layout.adapter_view_layout, array, methods.CALORIES);
                 calListView.setAdapter(adapter);
 
                 Intent calIntent = new Intent(getApplicationContext(), CaloriesActivity.class);
